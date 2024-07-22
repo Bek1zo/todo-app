@@ -5,6 +5,8 @@ import {inject, ref, watch, watchEffect} from "vue";
 import List from "./BodyComponent/List.vue";
 
 const taskList = inject('taskList')
+const syncStorage = inject('syncStorage')
+const currentPage = inject('currentPage')
 
 const taskName = ref('')
 
@@ -15,6 +17,7 @@ const addTodo = () => {
     date: new Date()
   })
   taskName.value = ''
+  syncStorage()
 }
 
 
@@ -31,7 +34,15 @@ const addTodo = () => {
     <div class="text-center text-xs">Введи название задачи</div>
   </div>
 
+  page is {{ currentPage }}
+
   <List/>
+
+  <div class="flex gap-6 mr-2 justify-end">
+    <div class="rounded-full border-2 w-auto p-2 text-center cursor-pointer" @click="currentPage = null">Все</div>
+    <div class="rounded-full border-2 w-auto p-2 text-center cursor-pointer" @click="currentPage = false">Активные</div>
+    <div class="rounded-full border-2 w-auto p-2 text-center cursor-pointer" @click="currentPage = true">Завершенные</div>
+  </div>
 </div>
 </template>
 
