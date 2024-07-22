@@ -2,6 +2,21 @@
 import {inject} from "vue";
 
 const taskList = inject('taskList')
+
+const makeStringData = (today) => {
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate();
+
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  const formattedToday = today.getHours() + ':' + today.getMinutes() + ' ' + dd + '.' + mm + '.' + yyyy + ' г.';
+
+
+  return formattedToday
+}
+
 </script>
 
 <template>
@@ -12,6 +27,9 @@ const taskList = inject('taskList')
       </div>
       <div>
         {{ task.name }}
+      </div>
+      <div class="flex justify-end">
+        {{ makeStringData(new Date(task.date)) }}
       </div>
     </li>
   </ul>

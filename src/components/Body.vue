@@ -11,7 +11,8 @@ const taskName = ref('')
 const addTodo = () => {
   taskList.value.push({
     name: taskName.value,
-    status: false
+    status: false,
+    date: new Date()
   })
   localStorage.setItem('taskList', JSON.stringify(taskList.value));
   taskName.value = ''
