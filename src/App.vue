@@ -17,6 +17,12 @@ onMounted(() => {
   }
 })
 
+const syncStorage = () => {
+  localStorage.setItem('taskList', JSON.stringify(taskList.value));
+}
+
+provide('syncStorage', syncStorage);
+
 provide("taskList", taskList)
 
 </script>
