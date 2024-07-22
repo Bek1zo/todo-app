@@ -10,7 +10,9 @@ const taskList = ref([{}])
 
 onMounted(() => {
   taskList.value = JSON.parse(localStorage.getItem('taskList'));
+  console.log(taskList.value === null)
   if (taskList.value === null) {
+    console.log(taskList.value)
     localStorage.setItem("taskList", '[]');
   }
 })
