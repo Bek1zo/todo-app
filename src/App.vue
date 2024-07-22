@@ -3,10 +3,9 @@
 import Header from "./components/Header.vue";
 import Body from "./components/Body.vue";
 import Footer from "./components/Footer.vue";
-import {computed, onMounted, provide, ref, watch} from "vue";
+import {onMounted, provide, ref, watch} from "vue";
 
 const taskList = ref([])
-// const filteredTaskList = computed(() => taskList.value.filter((item) => item.status === currentPage.value))
 
 const filteredTaskList = ref([])
 
@@ -22,7 +21,8 @@ watch(currentPage, (newValue) => {
 })
 
 const updateFilter = () => {
-  if (currentPage === null) {
+  console.log(currentPage)
+  if (currentPage.value === null) {
     filteredTaskList.value = taskList.value
   } else {
     filteredTaskList.value = taskList.value.filter((item) => item.status === currentPage.value)
@@ -57,7 +57,7 @@ provide("updateFilter", updateFilter)
 </script>
 
 <template>
-  <div class="container min-h-dvh flex flex-col m-auto gap-20">
+  <div class="container min-h-dvh flex flex-col m-auto gap-16">
     <Header/>
 
     <Body/>
